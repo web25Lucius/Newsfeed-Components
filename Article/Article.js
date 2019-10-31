@@ -88,7 +88,16 @@ const data = [
   }
 ];
 
-/* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
+
+
+/*  actual html : 
+    <div class="header">
+      <img class="menu-button" src="./assets/menu.png"/>
+      <h1>Lambda School Newsfeed</h1>
+    </div>
+    <div class="articles"></div>
+
+Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
   <div class="article">
     <h2>{title of the article}</h2>
@@ -99,9 +108,9 @@ const data = [
     <span class='expandButton'></span>
   </div>
 
-  Hint: You will need to use createElement more than once here!
+  -Hint: You will need to use createElement more than once here!
 
-  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
+  -Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
 
   Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
 
@@ -112,3 +121,30 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+function createPanel (title, date, firstParagraph, secondParagraph, thirdParagraph){
+  //define new elements
+  const panel = document.createElement('div');
+  const panelTitle = document.createElement('h2');
+  const panelDate = document.createElement('p');  
+  const panelTextTop = document.createElement('p'); 
+  const panelTextMid = document.createElement('p'); 
+  const panelTextBot = document.createElement('p');
+  const panelExpand = document.createElement('span'); 
+  const panelCollapse= document.createElement('span');
+  //class names
+  panel.classList.add('article'); 
+  panelDate.classList.add('date'); 
+  panelExpand.classList.add('expandButton'); 
+  panelCollapse.classList.add('collapseButton'); 
+  //structure
+  panel.appendChild(panelTitle); 
+  panel.appendChild(panelDate);
+  panel.appendChild(panelTextTop); 
+  panelTextTop.appendChild(panelTextMid); 
+  panelTextMid.appendChild(panelTextBot); 
+  panelTextBot.appendChild(panelExpand); 
+  
+
+
+  return panel
+}
