@@ -121,10 +121,13 @@ Step 1: Create a function that creates a component. You will want your component
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
-function createPanel (title, date, firstParagraph, secondParagraph, thirdParagraph){
+function createPanel (panelName, title, date, firstParagraph, secondParagraph, thirdParagraph){
   //define new elements
-  const panel = document.createElement('div');
+
+  
+  const panel = document.querySelector(panelName);
   const panelTitle = document.createElement('h2');
+  console.log(panelTitle); 
   const panelDate = document.createElement('p');  
   const panelTextTop = document.createElement('p'); 
   const panelTextMid = document.createElement('p'); 
@@ -138,13 +141,28 @@ function createPanel (title, date, firstParagraph, secondParagraph, thirdParagra
   panelCollapse.classList.add('collapseButton'); 
   //structure
   panel.appendChild(panelTitle); 
-  panel.appendChild(panelDate);
-  panel.appendChild(panelTextTop); 
+  panelTitle.appendChild(panelDate);
+  panelDate.appendChild(panelTextTop); 
   panelTextTop.appendChild(panelTextMid); 
   panelTextMid.appendChild(panelTextBot); 
   panelTextBot.appendChild(panelExpand); 
-  
+  panelExpand.appendChild(panelCollapse); 
+//  event listener on expand/collapse button
 
+  panelExpand.addEventListener('click', (event=> {
+    panelExpand.classList.toggle('hide-btn'); 
+    panelCollapse.classList.toggle('hide-btn'); 
+    panel.classList.toggle('toggle-on'); 
+  }))
 
+//content
+panelExpand.textContent= ('open');
+panelCollapse.textContent=('close'); 
+panelTextTop.textContent=('firstParagrah'); 
+panelTextMid.textContent=('secondParagraph'); 
   return panel
 }
+//experiment
+// document.querySelector('.articles').appendChild(createPanel());
+createPanel('.articles'); 
+// createPanel.appendChild('.articles'); 
