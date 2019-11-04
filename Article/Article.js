@@ -90,12 +90,7 @@ const data = [
 
 
 
-/*  actual html : 
-    <div class="header">
-      <img class="menu-button" src="./assets/menu.png"/>
-      <h1>Lambda School Newsfeed</h1>
-    </div>
-    <div class="articles"></div>
+/* 
 
 Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
@@ -121,48 +116,48 @@ Step 1: Create a function that creates a component. You will want your component
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
-function createPanel (panelName, title, date, firstParagraph, secondParagraph, thirdParagraph){
+function createPanel ( title, date, firstParagraph, secondParagraph, thirdParagraph){
   //define new elements
-
   
-  const panel = document.querySelector(panelName);
-  const panelTitle = document.createElement('h2');
-  console.log(panelTitle); 
-  const panelDate = document.createElement('p');  
-  const panelTextTop = document.createElement('p'); 
-  const panelTextMid = document.createElement('p'); 
-  const panelTextBot = document.createElement('p');
-  const panelExpand = document.createElement('span'); 
-  const panelCollapse= document.createElement('span');
+  const article = document.querySelector('.articles'); //div we are appending to   article.appendChild(what we want to put on the wall)
+
+
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');  
+  const articleTextTop = document.createElement('p'); 
+  const articleTextMid = document.createElement('p'); 
+  const articleTextBot = document.createElement('p');
+  const articleExpand = document.createElement('span'); 
+
   //class names
-  panel.classList.add('article'); 
-  panelDate.classList.add('date'); 
-  panelExpand.classList.add('expandButton'); 
-  panelCollapse.classList.add('collapseButton'); 
+   
+  articleDate.classList.add('date'); 
+  articleExpand.classList.add('expandButton'); 
+
   //structure
-  panel.appendChild(panelTitle); 
-  panelTitle.appendChild(panelDate);
-  panelDate.appendChild(panelTextTop); 
-  panelTextTop.appendChild(panelTextMid); 
-  panelTextMid.appendChild(panelTextBot); 
-  panelTextBot.appendChild(panelExpand); 
-  panelExpand.appendChild(panelCollapse); 
+  article.appendChild(articleTitle); 
+  article.appendChild(articleDate);
+  article.appendChild(articleTextTop); 
+  article.appendChild(articleTextMid); 
+  article.appendChild(articleTextBot); 
+  article.appendChild(articleExpand); 
 //  event listener on expand/collapse button
 
-  panelExpand.addEventListener('click', (event=> {
-    panelExpand.classList.toggle('hide-btn'); 
-    panelCollapse.classList.toggle('hide-btn'); 
-    panel.classList.toggle('toggle-on'); 
+  articleExpand.addEventListener('click', (event=> {
+    articleExpand.classList.toggle('hide-btn');  
+    // article.classList.toggle('toggle-on'); 
   }))
 
 //content
-panelExpand.textContent= ('open');
-panelCollapse.textContent=('close'); 
-panelTextTop.textContent=('firstParagrah'); 
-panelTextMid.textContent=('secondParagraph'); 
-  return panel
+articleTitle.textContent= (title); 
+articleDate.textContent= (date); 
+articleExpand.textContent= ('open');
+articleTextTop.textContent=(firstParagraph); 
+articleTextMid.textContent=(secondParagraph);
+articleTextBot.textContent=(thirdParagraph);  
+  return article; 
 }
 //experiment
 // document.querySelector('.articles').appendChild(createPanel());
-createPanel('.articles'); 
-// createPanel.appendChild('.articles'); 
+let news = createPanel(data[{title, date, firstParagraph, secondParagraph, thirdParagraph}]); 
+article.appendChild(news); 

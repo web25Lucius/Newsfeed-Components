@@ -79,6 +79,9 @@
 .hide-btn {
   display: none;
 }
+.toggle-on {
+  display: block;
+}
 html,
 body {
   margin: 0;
