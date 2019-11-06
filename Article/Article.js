@@ -115,49 +115,45 @@ Step 1: Create a function that creates a component. You will want your component
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
-*/
+*/const articles = document.querySelector('.articles');
 function createPanel ( title, date, firstParagraph, secondParagraph, thirdParagraph){
+
+// function createPanel (obj){
   //define new elements
   
-  const article = document.querySelector('.articles'); //div we are appending to   article.appendChild(what we want to put on the wall)
-
+  const article = document.createElement('div'); 
 
   const articleTitle = document.createElement('h2');
+  articleTitle.textContent= (title); 
+  article.appendChild(articleTitle);
+
   const articleDate = document.createElement('p');  
-  const articleTextTop = document.createElement('p'); 
-  const articleTextMid = document.createElement('p'); 
-  const articleTextBot = document.createElement('p');
-  const articleExpand = document.createElement('span'); 
-
-  //class names
-   
-  articleDate.classList.add('date'); 
-  articleExpand.classList.add('expandButton'); 
-
-  //structure
-  article.appendChild(articleTitle); 
+  articleDate.classList.add('date');
+  articleDate.textContent= (date); 
   article.appendChild(articleDate);
+
+  const articleTextTop = document.createElement('p'); 
+  articleTextTop.textContent=(firstParagraph); 
   article.appendChild(articleTextTop); 
+
+  const articleTextMid = document.createElement('p');
+  articleTextMid.textContent=(secondParagraph);
   article.appendChild(articleTextMid); 
+
+  const articleTextBot = document.createElement('p');
+  articleTextBot.textContent=(thirdParagraph); 
   article.appendChild(articleTextBot); 
+
+  const articleExpand = document.createElement('span');
+  articleExpand.textContent= ('open');
   article.appendChild(articleExpand); 
-//  event listener on expand/collapse button
-
+  articleExpand.classList.add('expandButton');  
   articleExpand.addEventListener('click', (event=> {
-    articleExpand.classList.toggle('hide-btn');  
-    // article.classList.toggle('toggle-on'); 
-  }))
+    articleExpand.classList.toggle('hide-btn');
+    })); 
 
-//content
-articleTitle.textContent= (title); 
-articleDate.textContent= (date); 
-articleExpand.textContent= ('open');
-articleTextTop.textContent=(firstParagraph); 
-articleTextMid.textContent=(secondParagraph);
-articleTextBot.textContent=(thirdParagraph);  
   return article; 
 }
-//experiment
-// document.querySelector('.articles').appendChild(createPanel());
-let news = createPanel(data[{title, date, firstParagraph, secondParagraph, thirdParagraph}]); 
-article.appendChild(news); 
+
+for(let i = 0; i < data.length; i++){
+articles.appendChild(createPanel(data[i].title, data[i].date, data[i].firstParagraph, data[i].secondParagraph, data[i].thirdParagraph)); };
