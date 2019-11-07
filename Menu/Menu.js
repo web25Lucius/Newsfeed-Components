@@ -9,26 +9,7 @@ let menuItems = [
   'Log Out'
 ];
 
-
-function menuCreate(arr){
-  const menuDiv = document.createElement = ('div'); 
-  menuDiv.classList.add('menu'); 
-  const uList = document.createElement = ('ul'); 
-  menuDiv.appendChild(uList); 
-  const listItem = document.createElement = ('li'); 
-
-  listItem.textContent=(arr.forEach( (items)=>{
-  let listItems = document.createElement= ('li'); 
-   listItems.textContent=(items);
-   uList.appendChild(listItems); 
-}))
- return menuDiv; 
-}
-
-menuCreate(menuItems); 
-/* 
-
-  Step 1: Write a function that will create a menu component as seen below:
+/*Step 1: Write a function that will create a menu component as seen below:
 
   <div class="menu">
     <ul>
@@ -40,7 +21,26 @@ menuCreate(menuItems);
 
   Step 2: Inside this function, iterate over the array creating a list item <li> element for each item in the array. 
   Add those items to the <ul>
+*/
 
+function menuCreate(arr){
+  const div = document.createElement('div'); 
+  div.classList.add('menu');
+
+  const ul = document.createElement('ul');
+  div.appendChild(ul); 
+  
+  arr.forEach(element => {
+    let li = document.createElement('li');
+    li.textContent= arr[element]; 
+    ul.appendChild(li);
+  });
+}
+
+menuCreate(menuItems); 
+
+
+/*
   Step 3: Using a DOM selector, select the menu button (the element with a class of 'menu-button') currently on the DOM.
 
   Step 4: add a click event listener to the menu button. When clicked it should toggle the class 'menu--open' on the menu (your div with a 'menu' class).
