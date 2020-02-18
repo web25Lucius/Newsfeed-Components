@@ -115,45 +115,93 @@ Step 1: Create a function that creates a component. You will want your component
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
-*/const articles = document.querySelector('.articles');
-function createPanel ( title, date, firstParagraph, secondParagraph, thirdParagraph){
+*/
+const genesis = ()=> {
 
-// function createPanel (obj){
-  //define new elements
-  
   const article = document.createElement('div'); 
+  article.classList.add('article'); 
 
-  const articleTitle = document.createElement('h2');
-  articleTitle.textContent= (title); 
-  article.appendChild(articleTitle);
+  const h2Title = document.createElement('h2'); 
+  h2Title.classList.add('h2Title'); 
 
-  const articleDate = document.createElement('p');  
-  articleDate.classList.add('date');
-  articleDate.textContent= (date); 
-  article.appendChild(articleDate);
+  const dateP = document.createElement('p'); 
+  dateP.classList.add('dateP'); 
 
-  const articleTextTop = document.createElement('p'); 
-  articleTextTop.textContent=(firstParagraph); 
-  article.appendChild(articleTextTop); 
+  const first = document.createElement('p'); 
+  first.classList.add('first'); 
 
-  const articleTextMid = document.createElement('p');
-  articleTextMid.textContent=(secondParagraph);
-  article.appendChild(articleTextMid); 
+  const second = document.createElement('p');
+  second.classList.add('second'); 
 
-  const articleTextBot = document.createElement('p');
-  articleTextBot.textContent=(thirdParagraph); 
-  article.appendChild(articleTextBot); 
+  const third = document.createElement('p');
+  third.classList.add('third'); 
 
-  const articleExpand = document.createElement('span');
-  articleExpand.textContent= ('open');
-  article.appendChild(articleExpand); 
-  articleExpand.classList.add('expandButton');  
-  articleExpand.addEventListener('click', (event=> {
-    articleExpand.classList.toggle('hide-btn');
-    })); 
 
-  return article; 
-}
+  article.appendChild(third); 
+  article.appendChild(second); 
+  article.appendChild(first); 
+  article.appendChild(dateP);
+  article.appendChild(h2Title); 
 
-for(let i = 0; i < data.length; i++){
-articles.appendChild(createPanel(data[i].title, data[i].date, data[i].firstParagraph, data[i].secondParagraph, data[i].thirdParagraph)); };
+  const canvas = document.querySelector('.articles'); 
+  
+  return canvas; 
+}; 
+
+genesis(); 
+
+
+data.forEach((currentVale=>{
+  const newGenesis= genesis(currentVale.title, currentVale.date, currentVale.firstParagraph, currentVale.secondParagraph, currentVale.thirdParagraph); 
+  canvas.appendChild(newGenesis); 
+  
+  // console.log(currentVale); 
+})
+); 
+
+
+
+
+
+
+
+
+// const articles = document.querySelector('.articles');
+// function createPanel ( title, date, firstParagraph, secondParagraph, thirdParagraph){
+
+//   const article = document.createElement('div'); 
+
+//   const articleTitle = document.createElement('h2');
+//   articleTitle.textContent= (title); 
+//   article.appendChild(articleTitle);
+
+//   const articleDate = document.createElement('p');  
+//   articleDate.classList.add('date');
+//   articleDate.textContent= (date); 
+//   article.appendChild(articleDate);
+
+//   const articleTextTop = document.createElement('p'); 
+//   articleTextTop.textContent=(firstParagraph); 
+//   article.appendChild(articleTextTop); 
+
+//   const articleTextMid = document.createElement('p');
+//   articleTextMid.textContent=(secondParagraph);
+//   article.appendChild(articleTextMid); 
+
+//   const articleTextBot = document.createElement('p');
+//   articleTextBot.textContent=(thirdParagraph); 
+//   article.appendChild(articleTextBot); 
+
+//   const articleExpand = document.createElement('span');
+//   articleExpand.textContent= ('open');
+//   article.appendChild(articleExpand); 
+//   articleExpand.classList.add('expandButton');  
+//   articleExpand.addEventListener('click', (event=> {
+//     articleExpand.classList.toggle('hide-btn');
+//     })); 
+
+//   return article; 
+// }
+
+// for(let i = 0; i < data.length; i++){
+// articles.appendChild(createPanel(data[i].title, data[i].date, data[i].firstParagraph, data[i].secondParagraph, data[i].thirdParagraph)); };
