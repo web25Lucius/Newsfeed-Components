@@ -85,6 +85,24 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+
+  {
+    title: 'This is one of those articles', 
+    date: 'August 10, 1987', 
+    firstParagraph: `meow meow meow moeow moeow moeow mooeow moow mooow moooo moooooooooooooooooooo Batman Moooooooooo NAN NAN NAN NAN NAN NAAAAAAAAAAAAAAAA  not a number.  Note a number.  Note a num.  num.  num.numnumnumnujmnujm.  Jumanji.  not a number. `,
+    
+    secondParagraph: `did you know?  did you?  know?  about?  did?  you?  did you?  did mooo?  MOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOeow   moooeow  mooow   moewo  meow`, 
+
+    thirdParagraph: `There was once this time that I went to Canada for my birthday but my friend didn't go the right way.  By that I mean, he didn't do what was asked of him at the border.  So when we got to the guard who asked for our identification, we were asked to pull off to an area full of officers.  So we get there and they have us exit the vehicle.  At first we think, nothing could go wrong.  I mean, we're just a bunch of students on our way to a casino.`
+  },
+
+  {
+    title: 'more Canada story?', 
+    date: 'August 11, 1987', 
+    firstParagraph: `shortly after midnight.  We are still at the station.  Interogation:  I should explain, there wer four of us.  John, Jane, Jake and myself.  Those names are dynamic.  So John was driving- and apparently very suspicious.  Jake had a highly terriflying out of context but darkly hilarious card in his wallet which kept us there another hour at least.  And Jane.. well, Jane had very little trust of American medicine and we'd just spent my birthday explaining why it was in her purse crossing the Canadian border. Such a long night.  Happy Birthday.`, 
+    secondParagraph: `hold the door.`, 
+    thirdParagraph: `Long ago in the far away land of ancient Greece there was a golden age.. but what is the measure of a true hero.. but this story is not some Greek tragedy.  We are the Muses.  Goddesses of the Arts and Proclaimers of Heroes... Back whent he world was new, the planet Earth was down on it's luck, and every where you looked Gigantic rouges called Titans ran amouk.`
   }
 ];
 
@@ -116,52 +134,74 @@ Step 1: Create a function that creates a component. You will want your component
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
-const genesis = ()=> {
+const genesis = (titleText, dateText, para1, para2, para3)=> {
 
   const article = document.createElement('div'); 
   article.classList.add('article'); 
 
   const h2Title = document.createElement('h2'); 
   h2Title.classList.add('h2Title'); 
-
+  h2Title.textContent= titleText; 
+ 
   const dateP = document.createElement('p'); 
   dateP.classList.add('dateP'); 
+  dateP.textContent= dateText; 
 
   const first = document.createElement('p'); 
   first.classList.add('first'); 
+  first.textContent= para1; 
 
   const second = document.createElement('p');
   second.classList.add('second'); 
+  second.textContent= para2; 
 
   const third = document.createElement('p');
   third.classList.add('third'); 
+  third.textContent= para3; 
+
+  const btn = document.createElement('span'); 
+  const buttON = document.createElement('span'); 
+
+  btn.classList.add('expandButton');
+  btn.textContent='\u25bc'; 
+
+  buttON.classList.add('closeButton'); 
+  btn.textContent='\u25b2';
+
+  // const event = ()=>{
+  //  return buttON.classList.toggle('hide-btn'); 
+  // }
 
 
-  article.appendChild(third); 
-  article.appendChild(second); 
-  article.appendChild(first); 
+  btn.addEventListener('click',(event)=>{
+    btn.classList.toggle('hide-btn'); 
+    buttON.classList.toggle('toggle-on'); 
+    article.classList.toggle('article-open'); 
+ }); 
+
+  article.appendChild(h2Title);
   article.appendChild(dateP);
-  article.appendChild(h2Title); 
-
-  const canvas = document.querySelector('.articles'); 
+  article.appendChild(first); 
+  article.appendChild(second);
+  article.appendChild(third); 
+  article.appendChild(btn); 
   
-  return canvas; 
+
+  return article; 
+  
 }; 
+ 
 
-genesis(); 
+const canvas = document.querySelector('.articles'); 
 
 
-data.forEach((currentVale=>{
-  const newGenesis= genesis(currentVale.title, currentVale.date, currentVale.firstParagraph, currentVale.secondParagraph, currentVale.thirdParagraph); 
-  canvas.appendChild(newGenesis); 
-  
-  // console.log(currentVale); 
+data.forEach((currentValue=>{
+  const newGenesis= genesis(currentValue.title, currentValue.date, currentValue.firstParagraph, currentValue.secondParagraph, currentValue.thirdParagraph); 
+  const omega = canvas.appendChild(newGenesis); 
+  return omega; 
+
 })
 ); 
-
-
-
-
 
 
 
