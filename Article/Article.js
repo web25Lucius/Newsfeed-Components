@@ -162,16 +162,17 @@ const genesis = (titleText, dateText, para1, para2, para3)=> {
   const btn = document.createElement('span'); 
   const buttON = document.createElement('span'); 
 
-  btn.classList.add('expandButton');
-  btn.textContent='\u25bc'; 
+  buttON.classList.add('expandButton');
+  buttON.textContent='\u25bc'; 
 
-  buttON.classList.add('closeButton'); 
+  btn.classList.add('closeButton'); 
   btn.textContent='\u25b2';
 
-  // const event = ()=>{
-  //  return buttON.classList.toggle('hide-btn'); 
-  // }
-
+  buttON.addEventListener('click',(event)=>{
+    buttON.classList.toggle('hide-btn'); 
+    btn.classList.toggle('toggle-on'); 
+    article.classList.toggle('article-open'); 
+ }); 
 
   btn.addEventListener('click',(event)=>{
     btn.classList.toggle('hide-btn'); 
@@ -185,6 +186,7 @@ const genesis = (titleText, dateText, para1, para2, para3)=> {
   article.appendChild(second);
   article.appendChild(third); 
   article.appendChild(btn); 
+  article.appendChild(buttON); 
   
 
   return article; 
