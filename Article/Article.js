@@ -159,33 +159,44 @@ const genesis = (titleText, dateText, para1, para2, para3)=> {
   third.classList.add('third'); 
   third.textContent= para3; 
 
-  const btn = document.createElement('span'); 
-  const buttON = document.createElement('span'); 
 
+
+  const buttON = document.createElement('span'); //starting btn
   buttON.classList.add('expandButton');
-  buttON.textContent='\u25bc'; 
+  buttON.textContent='\u25bc'; //down arrow
 
-  btn.classList.add('closeButton'); 
-  btn.textContent='\u25b2';
-
-  buttON.addEventListener('click',(event)=>{
+article.addEventListener('click',(event)=>{
     buttON.classList.toggle('hide-btn'); 
-    btn.classList.toggle('toggle-on'); 
+    buttOFF.classList.toggle('toggle-on'); 
     article.classList.toggle('article-open'); 
+ }); 
+ 
+
+  const buttOFF = document.createElement('span');
+  buttOFF.classList.add('expandButton'); //styling
+  buttOFF.textContent='\u25b2'; // up arrow
+
+ article.addEventListener('click',(event)=>{
+    buttOFF.classList.toggle('hide-btn'); 
+    buttON.classList.toggle('toggle-on'); 
+    article.classList.toggle('article-close'); 
  }); 
 
-  btn.addEventListener('click',(event)=>{
-    btn.classList.toggle('hide-btn'); 
-    buttON.classList.toggle('toggle-on'); 
-    article.classList.toggle('article-open'); 
- }); 
+
+ 
+
+//   btn.addEventListener('click',(event)=>{
+//     btn.classList.toggle('hide-btn'); 
+//     buttON.classList.toggle('toggle-on'); 
+//     article.classList.toggle('article-open'); 
+//  }); 
 
   article.appendChild(h2Title);
   article.appendChild(dateP);
   article.appendChild(first); 
   article.appendChild(second);
   article.appendChild(third); 
-  article.appendChild(btn); 
+  article.appendChild(buttOFF); 
   article.appendChild(buttON); 
   
 
